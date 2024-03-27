@@ -15,11 +15,15 @@ Custom filters for tasks and labels
 Follow these steps to set up and run the project locally:
 1. Clone the repository:
 
-` git clone https://github.com/your-username/task-management-system.git  `
+```
+git clone https://github.com/your-username/task-management-system.git
+```
 
 2. Navigate to the project directory:
 
-`cd task-management-system`
+```
+cd task-management-system
+```
 
 3. Create and activate a virtual environment:
 
@@ -30,21 +34,29 @@ env\Scripts\activate  # For Windows
 ```
 4. Install the project dependencies:
 
-`pip install -r requirements.txt`
+```
+pip install -r requirements.txt
+```
 
 5. Apply database migrations:
 
-`python manage.py migrate`
+```
+python manage.py migrate
+```
 
 6. Create a superuser account:
 
-`python manage.py createsuperuser`
+```
+python manage.py createsuperuser
+```
 
 Follow the prompts to enter a username, email, and password for the superuser account.
 
 7. Start the development server:
 
-`python manage.py runserver`
+```
+python manage.py runserver
+```
 
 The API will be accessible at `http://localhost:8000/`.
 
@@ -63,19 +75,31 @@ The following API endpoints are available:
 - `PUT /api/labels/{id}/` - Update a specific label by ID.
 - `DELETE /api/labels/{id}/` - Delete a specific label by ID.
 
+## Access the Admin Panel
+To see the Django admin panel visit http://127.0.0.1:8000/admin/ in your web browser.
+### User's credentials:
+- username: 'user1', password: 'password1', is_staff=True
+- username: 'user2', password: 'password2', is_staff=True
+- username: 'user3', email: 'user3@email.com', password: 'Test@123456', is_staff=False
+- username: 'rushikumarb94', email: 'rushikumar.b94@gmail.com', password: 'csts@123456', is_staff=True
+
 ## Testing the API
 To test the API endpoints, you can use tools like cURL or Postman. Here are some example requests:
 1. Obtain an authentication token:
 `curl -X POST -H "Content-Type: application/json" -d '{"username": "your-username", "password": "your-password"}' http://localhost:8000/api/auth/login/`
 Replace `your-username` and `your-password` with your actual credentials.
+
 2. Create a new task:
 `curl -X POST -H "Content-Type: application/json" -H "Authorization: Token <your-token>" -d '{"title": "New Task", "description": "Task description"}' http://localhost:8000/api/tasks/`
 Replace `your-token` with the authentication token obtained in step 1.
+
 3. List all tasks:
 `curl -H "Authorization: Token <your-token>" http://localhost:8000/api/tasks/`
+
 4. Update a task:
 `curl -X PUT -H "Content-Type: application/json" -H "Authorization: Token <your-token>" -d '{"title": "Updated Task", "completed": true}' http://localhost:8000/api/tasks/{id}/`
 Replace `{id}` with the actual ID of the task you want to update.
+
 5. Delete a task:
 `curl -X DELETE -H "Authorization: Token <your-token>" http://localhost:8000/api/tasks/{id}/`
 Replace `{id}` with the actual ID of the task you want to delete.
